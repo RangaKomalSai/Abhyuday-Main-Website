@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OASIS Registration Form</title>
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="images/black1.png" type="image/x-icon" />
+    <link rel="icon" href="images/black1.png" type="image/x-icon" />
+    <style>
+      .heading {
+        font-size: 18px;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f9fc;
+        margin-top: 20px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .form-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        position: relative;
+        margin-bottom: 50px;
+      }
+
+      .form-container::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 5px;
+        background-color: #f5ba1a;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+
+      .form-container h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+        width: 100%;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: #007bff;
+      }
+
+      .form-group .error {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      .submit-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .submit-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body
+    style="background-color: white; background-image: url(../images/bg123.png)"
+  >
+    <div class="form-container">
+      <h1 class="heading">OASIS Registration Form</h1>
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="school">School Name</label>
+          <input type="text" id="school" name="school" required />
+        </div>
+
+        <div class="form-group">
+          <label for="class">Class</label>
+          <select id="class" name="class" required>
+            <option value="">Select</option>
+            <option value="5-6">5-6</option>
+            <option value="7-8">7-8</option>
+            <option value="9-10">9-10</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            pattern="\d{10}"
+            maxlength="10"
+            required
+          />
+          <div class="error" id="phoneError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+          <div class="error" id="emailError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" required />
+        </div>
+
+        <div class="form-group">
+          <label for="state">State</label>
+          <input type="text" id="state" name="state" required />
+        </div>
+
+        <div class="form-group">
+          <label for="region">Zonal Region</label>
+          <select id="region" name="region" required>
+            <option value="">Select</option>
+            <option value="delhi">Delhi</option>
+            <option value="jaipur">Jaipur</option>
+          </select>
+        </div>
+
+        <button type="submit" class="submit-btn">Register</button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (event) {
+          const phoneInput = document.getElementById("phone");
+          const phoneError = document.getElementById("phoneError");
+          const emailInput = document.getElementById("email");
+          const emailError = document.getElementById("emailError");
+
+          phoneError.textContent = "";
+          emailError.textContent = "";
+
+          if (!/^[0-9]{10}$/.test(phoneInput.value)) {
+            phoneError.textContent = "Phone number must be 10 digits.";
+            event.preventDefault();
+            return;
+          }
+
+          if (!emailInput.validity.valid) {
+            emailError.textContent = "Please enter a valid email address.";
+            event.preventDefault();
+            return;
+          }
+          event.preventDefault(); // Prevent default form submission
+
+          const formData = {
+            name: document.getElementById("name").value,
+            school: document.getElementById("school").value,
+            class: document.getElementById("class").value,
+            phone: document.getElementById("phone").value,
+            email: document.getElementById("email").value,
+            city: document.getElementById("city").value,
+            state: document.getElementById("state").value,
+            region: document.getElementById("region").value,
+          };
+
+          fetch("https://actionplan.abhyudayiitb.org/api/compi/reg/oasis", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.message) {
+                alert(data.message); // Success message
+                document.getElementById("registrationForm").reset(); // Clear form fields
+              } else {
+                alert("Error: " + data.error); // Error message
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("Failed to submit registration.");
+            });
+        });
+    </script>
+  </body>
+</html>
