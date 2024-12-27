@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SocioX - Case Challenge Registration</title>
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="../images/black1.png" type="image/x-icon" />
+    <link rel="icon" href="../images/black1.png" type="image/x-icon" />
+    <style>
+      .heading {
+        font-size: 18px;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f9fc;
+        margin-top: 20px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .form-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        position: relative;
+        margin-bottom: 50px;
+      }
+
+      .form-container::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 5px;
+        background-color: #f5ba1a;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+
+      .form-container h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+        width: 100%;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: #007bff;
+      }
+
+      .form-group .error {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      .submit-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .submit-btn:hover {
+        background-color: #0056b3;
+      }
+      .add-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 8px 12px;
+        font-size: 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      .add-btn:hover {
+        background-color: #0056b3;
+      }
+      .required {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body
+    style="background-color: white; background-image: url(../images/bg123.png)"
+  >
+    <div class="form-container">
+      <h1 class="heading">SocioX - Case Study Registration</h1>
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="teamName"
+            >Team Name <span class="required">*</span></label
+          >
+          <input type="text" id="teamName" name="teamName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="leaderName"
+            >Leader Name <span class="required">*</span></label
+          >
+          <input type="text" id="leaderName" name="leaderName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="leaderEmail"
+            >Leader Email Id <span class="required">*</span></label
+          >
+          <input type="email" id="leaderEmail" name="leaderEmail" required />
+        </div>
+
+        <div class="form-group">
+          <label for="leaderPhone"
+            >Leader Phone Number <span class="required">*</span></label
+          >
+          <input
+            type="tel"
+            id="leaderPhone"
+            name="leaderPhone"
+            pattern="\d{10}"
+            maxlength="10"
+            required
+          />
+          <div class="error" id="leaderPhoneError"></div>
+        </div>
+
+        <div id="membersContainer"></div>
+
+        <button
+          type="button"
+          id="addMemberBtn"
+          class="add-btn"
+          style="display: none"
+        >
+          Add Member
+        </button>
+
+        <div class="form-group">
+          <label for="collegeName"
+            >College Name <span class="required">*</span></label
+          >
+          <input type="text" id="collegeName" name="collegeName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="year"
+            >Year of Study <span class="required">*</span></label
+          >
+          <select id="year" name="year" required>
+            <option value="">Select</option>
+            <option value="1st">1st</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+            <option value="4th">4th</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="city">City <span class="required">*</span></label>
+          <input type="text" id="city" name="city" required />
+        </div>
+
+        <div class="form-group">
+          <label for="state">State <span class="required">*</span></label>
+          <input type="text" id="state" name="state" required />
+        </div>
+
+        <button type="submit" class="submit-btn">Register</button>
+      </form>
+    </div>
+
+    <script>
+      const leaderFields = ["leaderName", "leaderEmail", "leaderPhone"];
+      const membersContainer = document.getElementById("membersContainer");
+      const addMemberBtn = document.getElementById("addMemberBtn");
+      let memberCount = 0;
+
+      // Show the "Add Member" button after leader details are filled
+      leaderFields.forEach((field) => {
+        document.getElementById(field).addEventListener("input", () => {
+          const allFilled = leaderFields.every(
+            (id) => document.getElementById(id).value.trim() !== ""
+          );
+          addMemberBtn.style.display = allFilled ? "block" : "none";
+        });
+      });
+
+      // Add a new member when "Add Member" is clicked
+      addMemberBtn.addEventListener("click", () => {
+        memberCount++;
+
+        if (memberCount == 2) {
+          addMemberBtn.style.display = "none";
+        }
+
+        if (memberCount > 2) {
+          alert("Max team size is 3, including the leader.");
+          return;
+        }
+
+        const memberHTML = `
+        <div class="form-group">
+          <label for="member${memberCount}Name">Member ${memberCount} Name</label>
+          <input type="text" id="member${memberCount}Name" name="member${memberCount}Name" />
+        </div>
+        <div class="form-group">
+          <label for="member${memberCount}Email">Member ${memberCount} Email Id</label>
+          <input type="email" id="member${memberCount}Email" name="member${memberCount}Email" />
+        </div>
+        <div class="form-group">
+          <label for="member${memberCount}Phone">Member ${memberCount} Phone Number</label>
+          <input
+            type="tel"
+            id="member${memberCount}Phone"
+            name="member${memberCount}Phone"
+            pattern="\\d{10}"
+            maxlength="10"
+          />
+        </div>
+      `;
+        const memberDiv = document.createElement("div");
+        memberDiv.innerHTML = memberHTML;
+        membersContainer.appendChild(memberDiv);
+      });
+
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const leaderPhone = document.getElementById("leaderPhone").value;
+          const leaderPhoneError = document.getElementById("leaderPhoneError");
+
+          leaderPhoneError.textContent = "";
+
+          if (!/^[0-9]{10}$/.test(leaderPhone)) {
+            leaderPhoneError.textContent = "Phone number must be 10 digits.";
+            return;
+          }
+
+          const formData = {
+            teamName: document.getElementById("teamName").value,
+            leaderName: document.getElementById("leaderName").value,
+            leaderEmail: document.getElementById("leaderEmail").value,
+            leaderPhone: document.getElementById("leaderPhone").value,
+            collegeName: document.getElementById("collegeName").value,
+            yearOfStudy: document.getElementById("year").value,
+            city: document.getElementById("city").value,
+            state: document.getElementById("state").value,
+            members: [],
+          };
+
+          for (let i = 1; i <= memberCount; i++) {
+            formData.members.push({
+              name: document.getElementById(`member${i}Name`).value || "",
+              email: document.getElementById(`member${i}Email`).value || "",
+              phone: document.getElementById(`member${i}Phone`).value || "",
+            });
+          }
+
+          fetch(
+            "https://actionplan.abhyudayiitb.org/api/compi/reg/socioX/register",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.message == "Registered Successfully!") {
+                alert(data.message); // Success message
+                document.getElementById("registrationForm").reset(); // Clear form fields
+                membersContainer.innerHTML = ""; // Clear added members
+                memberCount = 0;
+                addMemberBtn.style.display = "none";
+              } else {
+                alert("Error: " + data.message); // Error message
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("Failed to submit registration.");
+            });
+        });
+    </script>
+  </body>
+</html>
