@@ -28,6 +28,10 @@
     ================================================== -->
     <link rel="shortcut icon" href="images/black1.png" type="image/x-icon" />
     <link rel="icon" href="images/black1.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <style type="text/css">
       #more-text {
         display: none;
@@ -137,6 +141,54 @@
       .popup-container p {
         margin: 10px 0;
         line-height: 1.5;
+      }
+      .collapsible {
+        border: none;
+        text-align: left;
+        outline: none;
+        margin-bottom: 0px;
+        transition: background-color 0.2s;
+      }
+
+      .collapsible:hover {
+        background-color: #e8e8e8;
+      }
+      .content {
+        padding: 0 20px;
+        padding-top: 10px;
+        display: none;
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.6
+        ); /* Translucent haze effect */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+      }
+      .rounds {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .r1,
+      .r2 {
+        width: 100%;
+        padding: 10px 10px;
+        background-color: #efeded; /* Opaque header */
+        color: black;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .content h3 {
+        font-weight: 600;
       }
     </style>
   </head>
@@ -376,7 +428,6 @@
                 </p>
 
                 <hr />
-
                 <h3>Key Details</h3>
                 <ul>
                   <li>
@@ -388,54 +439,269 @@
                     impactful and thought-provoking problem statements,
                     carefully curated to inspire innovative solutions.
                   </li>
+                  <li>
+                    <strong>Competition Rounds:</strong>
+                    <ul>
+                      <li>
+                        <strong>Round 1:</strong> Submit a 4-slide deck
+                        presentation addressing the chosen problem statement.
+                      </li>
+                      <li>
+                        <strong>Round 2:</strong> Shortlisted teams will prepare
+                        a detailed 12-15 slide presentation and deliver it
+                        in-person at IIT Bombay on 11th and 12th January.
+                      </li>
+                    </ul>
+                  </li>
                 </ul>
-
                 <hr />
-
-                <h3>Deliverables</h3>
-                <ol>
-                  <li>
-                    <strong>Presentation:</strong>
-                    <ul>
+                <h3>Details of Rounds</h3>
+                <div class="rounds">
+                  <div class="collapsible r1">
+                    <div>Round 1</div>
+                    <div class="icon fa-solid fa-angle-down"></div>
+                  </div>
+                  <div class="content">
+                    <h3>Deliverables</h3>
+                    <ol>
                       <li>
-                        Prepare a
-                        <em>detailed yet concise presentation</em> (12-15 slides
-                        maximum) addressing the selected problem statement.
+                        <strong>Presentation:</strong>
+                        <ul>
+                          <li>
+                            Prepare a
+                            <em>detailed yet concise presentation</em> (of 4
+                            slides) addressing the selected problem statement.
+                          </li>
+                          <li>
+                            Highlight key insights, proposed solutions, and
+                            implementation strategies.
+                          </li>
+                        </ul>
                       </li>
                       <li>
-                        Highlight key insights, proposed solutions, and
-                        implementation strategies.
+                        <strong>Submission Requirements:</strong>
+                        <ul>
+                          <li>Upload the presentation to Google Drive.</li>
+                          <li>
+                            Share the <em>Drive Link</em> in the provided
+                            submission form.
+                          </li>
+                          <li>
+                            The file format must be named as:
+                            <code>TeamName_LeaderName</code>
+                          </li>
+                        </ul>
                       </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <strong>Submission Requirements:</strong>
-                    <ul>
-                      <li>Upload the presentation to Google Drive.</li>
+                    </ol>
+                    <hr />
+                    <h3>Format of Presentation</h3>
+                    <ol>
                       <li>
-                        Share the <em>Drive Link</em> in the provided submission
-                        form.
+                        <strong>Title Slide</strong>
+                        <ul>
+                          <li>Case Study Title</li>
+                          <li>Team Name and Member Details</li>
+                          <li>
+                            Competition and Organizer Details (Abhyuday, IIT
+                            Bombay & Hand in Hand India)
+                          </li>
+                        </ul>
                       </li>
                       <li>
-                        The file format must be named as:
-                        <code>TeamName_LeaderName</code>
+                        <strong>Problem Analysis and Insights </strong>
+                        <ul>
+                          <li>Brief Overview of the Problem Statement</li>
+                          <li>
+                            Key Insights from Research or Analysis (use data or
+                            visuals like charts)
+                          </li>
+                          <li>
+                            Root Cause Analysis or Major Challenges Identified
+                          </li>
+                        </ul>
                       </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <strong>Final Round:</strong>
-                    <ul>
                       <li>
-                        Deliver a <em>10-minute presentation</em> at IIT Bombay
-                        in an offline setting.
+                        <strong>Proposed Solution </strong>
+                        <ul>
+                          <li>Summary of the Solution</li>
+                          <li>How it Addresses the Problem</li>
+                          <li>Innovation and Uniqueness</li>
+                          <li>
+                            Feasibility Overview (technical, financial, and
+                            social aspects)
+                          </li>
+                          <li>
+                            Visuals like diagrams or flowcharts to simplify
+                            complex ideas
+                          </li>
+                        </ul>
                       </li>
                       <li>
-                        Participate in a <em>4 to 5-minute Q&A session</em> with
-                        a panel of esteemed judges.
+                        <strong>Implementation and Impact </strong>
+                        <ul>
+                          <li>
+                            Implementation Plan: High-level steps and key
+                            milestones
+                          </li>
+                          <li>
+                            Expected Impact:
+                            <ul>
+                              <li>Beneficiaries and their benefits</li>
+                              <li>Metrics to measure success</li>
+                              <li>End with a compelling Call to Action</li>
+                            </ul>
+                          </li>
+                        </ul>
                       </li>
-                    </ul>
-                  </li>
-                </ol>
+                    </ol>
+                  </div>
+                  <div class="collapsible r2">
+                    <div>Round 2</div>
+                    <div class="icon fa-solid fa-angle-down"></div>
+                  </div>
+                  <div class="content">
+                    <h3>Deliverables</h3>
+                    <ol>
+                      <li>
+                        <strong>Presentation:</strong>
+                        <ul>
+                          <li>
+                            Prepare a
+                            <em>detailed yet concise presentation</em> (12-15
+                            slides maximum) addressing the selected problem
+                            statement.
+                          </li>
+                          <li>
+                            Highlight key insights, proposed solutions, and
+                            implementation strategies.
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <strong>Submission Requirements:</strong>
+                        <ul>
+                          <li>Upload the presentation to Google Drive.</li>
+                          <li>
+                            Share the <em>Drive Link</em> in the provided
+                            submission form.
+                          </li>
+                          <li>
+                            The file format must be named as:
+                            <code>TeamName_LeaderName</code>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <strong>Final Round:</strong>
+                        <ul>
+                          <li>
+                            Deliver a <em>10-minute presentation</em> at IIT
+                            Bombay in an offline setting.
+                          </li>
+                          <li>
+                            Participate in a
+                            <em>4 to 5-minute Q&A session</em> with a panel of
+                            esteemed judges.
+                          </li>
+                        </ul>
+                      </li>
+                    </ol>
+                    <hr />
+                    <h3>Format of Presentation</h3>
+                    <ol>
+                      <li>
+                        <strong>Title Slide</strong>
+                        <ul>
+                          <li>Team Name and Member Details</li>
+                          <li>Case Study Title</li>
+                          <li>
+                            Competition and Organizer Details (Abhyuday, IIT
+                            Bombay & Hand in Hand India)
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <strong>Introduction</strong>
+                        <ul>
+                          <li>Brief Overview of the Problem Statement</li>
+                          <li>Context/Background of the Issue</li>
+                          <li>Relevance to the NGO's mission and goals</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <strong>Problem Analysis</strong>
+                        <ul>
+                          <li>Root Cause Analysis</li>
+                          <li>Key Stakeholders Involved</li>
+                          <li>
+                            Data and Insights (supported by research, surveys,
+                            or case facts)
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <strong>Proposed Solution(s)</strong>
+                        <ul>
+                          <li>Detailed Description of the Solution</li>
+                          <li>Innovation and Uniqueness</li>
+                          <li>
+                            Feasibility (technical, financial, and social)
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <strong>Implementation Plan</strong>
+                        <ul>
+                          <li>Step-by-Step Approach</li>
+                          <li>Timelines and Milestones</li>
+                          <li>
+                            Resources Required (human, financial, material)
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <strong>Impact Assessment</strong>
+                        <ul>
+                          <li>Expected Outcomes</li>
+                          <li>Beneficiaries and their Benefits</li>
+                          <li>Metrics for Measuring Success</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <strong>Challenges and Mitigation</strong>
+                        <ul>
+                          <li>Potential Risks in Implementation</li>
+                          <li>Contingency Plans</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <strong>Budget and Funding</strong>
+                        <ul>
+                          <li>Cost Breakdown</li>
+                          <li>
+                            Potential Sources of Funding (grants, crowdfunding,
+                            etc.)
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <strong>Conclusion</strong>
+                        <ul>
+                          <li>Summary of Key Points</li>
+                          <li>Call to Action for Stakeholders/NGO</li>
+                          <li>Vision for Long-Term Impact</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <strong>Appendix/References</strong>
+                        <ul>
+                          <li>Supporting Data, Charts, or Graphs</li>
+                          <li>Citations for Research and Sources</li>
+                        </ul>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
 
                 <hr />
 
@@ -452,96 +718,6 @@
                 </ul>
 
                 <hr />
-
-                <h3>Format of Presentation</h3>
-                <ol>
-                  <li>
-                    <strong>Title Slide</strong>
-                    <ul>
-                      <li>Team Name and Member Details</li>
-                      <li>Case Study Title</li>
-                      <li>
-                        Competition and Organizer Details (Abhyuday, IIT Bombay
-                        & Hand in Hand India)
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <strong>Introduction</strong>
-                    <ul>
-                      <li>Brief Overview of the Problem Statement</li>
-                      <li>Context/Background of the Issue</li>
-                      <li>Relevance to the NGO's mission and goals</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <strong>Problem Analysis</strong>
-                    <ul>
-                      <li>Root Cause Analysis</li>
-                      <li>Key Stakeholders Involved</li>
-                      <li>
-                        Data and Insights (supported by research, surveys, or
-                        case facts)
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <strong>Proposed Solution(s)</strong>
-                    <ul>
-                      <li>Detailed Description of the Solution</li>
-                      <li>Innovation and Uniqueness</li>
-                      <li>Feasibility (technical, financial, and social)</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <strong>Implementation Plan</strong>
-                    <ul>
-                      <li>Step-by-Step Approach</li>
-                      <li>Timelines and Milestones</li>
-                      <li>Resources Required (human, financial, material)</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <strong>Impact Assessment</strong>
-                    <ul>
-                      <li>Expected Outcomes</li>
-                      <li>Beneficiaries and their Benefits</li>
-                      <li>Metrics for Measuring Success</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <strong>Challenges and Mitigation</strong>
-                    <ul>
-                      <li>Potential Risks in Implementation</li>
-                      <li>Contingency Plans</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <strong>Budget and Funding</strong>
-                    <ul>
-                      <li>Cost Breakdown</li>
-                      <li>
-                        Potential Sources of Funding (grants, crowdfunding,
-                        etc.)
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <strong>Conclusion</strong>
-                    <ul>
-                      <li>Summary of Key Points</li>
-                      <li>Call to Action for Stakeholders/NGO</li>
-                      <li>Vision for Long-Term Impact</li>
-                    </ul>
-                  </li>
-                  <li>
-                    <strong>Appendix/References</strong>
-                    <ul>
-                      <li>Supporting Data, Charts, or Graphs</li>
-                      <li>Citations for Research and Sources</li>
-                    </ul>
-                  </li>
-                </ol>
 
                 <p>
                   This competition provides a unique opportunity for socially
@@ -945,6 +1121,38 @@
         popupContainer.style.display = "none";
         popupOverlay.style.display = "none";
       });
+
+      var collapsibles = document.getElementsByClassName("collapsible");
+      for (var i = 0; i < collapsibles.length; i++) {
+        collapsibles[i].addEventListener("click", function () {
+          for (var j = 0; j < collapsibles.length; j++) {
+            if (
+              collapsibles[j] !== this &&
+              collapsibles[j].classList.contains("active")
+            ) {
+              collapsibles[j].classList.remove("active");
+              collapsibles[j].nextElementSibling.style.display = "none";
+              var icon = collapsibles[j].querySelector(".icon");
+              if (icon) icon.classList.replace("fa-angle-up", "fa-angle-down");
+            }
+          }
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+          var icon = this.querySelector(".icon");
+          if (icon) {
+            if (this.classList.contains("active")) {
+              icon.classList.replace("fa-angle-down", "fa-angle-up");
+            } else {
+              icon.classList.replace("fa-angle-up", "fa-angle-down");
+            }
+          }
+        });
+      }
     </script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/plugins.js"></script>
